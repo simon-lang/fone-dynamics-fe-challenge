@@ -1,9 +1,15 @@
 import { Component, Vue } from 'vue-property-decorator';
 import axios, { AxiosResponse } from 'axios';
 
-interface UserResponse {
-    id: string;
-    name: string;
+interface ClientAccount {
+    AccountId: number;
+    AccountName: string;
+    Properties: ClientProperty[];
+}
+
+interface ClientProperty {
+    PropertyId: number;
+    Name: string;
 }
 
 @Component({
@@ -11,15 +17,16 @@ interface UserResponse {
 })
 export class ListComponent extends Vue {
 
-    // items: UserResponse[] = [];
-    items: Object[];
+    accounts: ClientAccount[] = [];
+    account: ClientAccount;
+    properties: ClientProperty[] = [];
+    term: string;
     private url = '/assets/data.json';
     protected axios;
 
     constructor() {
       super();
       this.axios = axios;
-      this.items = [];
     }
 
     mounted() {
@@ -28,10 +35,19 @@ export class ListComponent extends Vue {
         });
     }
 
+    search() {
+        // console.log(this.term);
+    }
+
+    selectAccount(account) {
+        this.account = account;
+        this.properties = account.Properties;
+    }
+
     private loadItems() {
-        if (!this.items.length) {
+        if (!this.accounts.length) {
             this.axios.get(this.url).then((response: AxiosResponse) => {
-                this.items = response.data;
+                this.accounts = response.data;
             }, (error) => {
                 console.error(error);
             });
