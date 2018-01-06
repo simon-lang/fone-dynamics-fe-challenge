@@ -1,0 +1,17 @@
+.alert {
+    padding: 2em;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.list-item {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    &:hover {
+        background: #f0f0f0;
+    }
+    &.selected {
+        background: #d9edf7;
+    }
+}
+
