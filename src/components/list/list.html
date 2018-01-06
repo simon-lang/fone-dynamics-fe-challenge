@@ -6,15 +6,15 @@
         </button>
     </form>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <strong>Accounts</strong>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <strong>Properties</strong>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="list-item account-list-item"
                 v-for="account in accounts"
                 v-on:click="selectAccount(account)"
@@ -23,7 +23,7 @@
                 {{account.AccountName}}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="list-item property-list-item"
                 v-for="property in properties"
                 v-on:click="selectProperty(property)"
