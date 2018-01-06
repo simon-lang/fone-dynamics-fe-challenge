@@ -25,6 +25,7 @@ export class ListComponent extends Vue {
     private selectedAccount: ClientAccount = null;
     private properties: ClientProperty[] = [];
     private alert: string = '';
+    private loading: boolean = true;
     private term: string = '';
     private url: string = '/assets/data.json';
     protected axios;
@@ -83,6 +84,7 @@ export class ListComponent extends Vue {
     private loadItems() {
         if (!this.accounts.length) {
             this.axios.get(this.url).then((response: AxiosResponse) => {
+                this.loading = false;
                 // Map Properties back to parent Accounts for later
                 response.data.forEach(account => {
                     account.Properties.forEach(property => {
@@ -92,6 +94,7 @@ export class ListComponent extends Vue {
                 this._accounts = response.data;
                 this.search();
             }, (error) => {
+                this.loading = false;
                 console.error(error);
             });
         }

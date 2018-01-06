@@ -34,7 +34,7 @@
     </div>
     <div class="row" v-if="properties.length === 0">
         <div class="col-md-12">
-            <div class="text-center">No Matches</div>
+            <div class="text-center">{{loading ? 'Loading...' : 'No Matches'}}</div>
         </div>
     </div>
     <div class="alert" v-if="alert.length > 0">
