@@ -2,6 +2,7 @@ import Component from 'vue-class-component';
 import { expect } from 'chai';
 import { ComponentTest } from '../../util/component-test';
 import { ListComponent } from './list';
+const data = require('../../assets/data.json');
 
 @Component({
   template: require('./list.html')
@@ -11,7 +12,7 @@ class MockListComponent extends ListComponent {
     super();
     this.axios = {
       get: () => {
-        return Promise.resolve({ data: [{ name: 'test 1' }, { name: 'test 2' }, { name: 'test 3' }] });
+        return Promise.resolve({ data });
       }
     };
   }
@@ -28,9 +29,8 @@ describe('List component', () => {
     directiveTest.createComponent();
 
     await directiveTest.execute((vm) => { // ensure Vue has bootstrapped/run change detection
-      debugger;
-      console.log(vm.$el.querySelectorAll('.content ul li'));
-      expect(vm.$el.querySelectorAll('.content ul li').length).to.equal(3);
+        expect(vm.$el.querySelectorAll('.account-list-item').length).to.equal(3);
+        expect(vm.$el.querySelectorAll('.property-list-item').length).to.equal(16);
     });
   });
 });

@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="list-item"
+            <div class="list-item account-list-item"
                 v-for="account in accounts"
                 v-on:click="selectAccount(account)"
                 v-bind:class="{ selected: account === selectedAccount }"
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="list-item"
+            <div class="list-item property-list-item"
                 v-for="property in properties"
                 v-on:click="selectProperty(property)"
             >
